@@ -1,9 +1,17 @@
 import requests
 import pandas as pd
 import os
+from dotenv import load_dotenv 
+
+load_dotenv()
 
 def fetch_and_save_stops_data():
-    API_KEY = "565e7557-c6d8-4b22-9aef-03af20ab4102"
+    API_KEY = os.getenv("API_KEY")
+
+    if not API_KEY:
+        print("[❌] Błąd: Klucz API nie został znaleziony. Upewnij się, że plik .env istnieje i zawiera API_KEY.")
+        return
+
     resource_id = "ab75c33d-3a26-4342-b36a-6e5fef0a3ac3"
     action = "dbstore_get"
 
